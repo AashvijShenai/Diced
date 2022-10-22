@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block title %} Diced!! - Play {% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <div>
+        <main>
+            <form id="start">
+                <header> <h1> Diced!! </h1> </header>
+                <input id="name" type="text" maxlength="30" placeholder="Your name">
+            </form>
+            <div id="panel">
+                <div class="scoreText" style="top: 70px;right: 10px;"><span id="name1">Player1</span> &mdash; <span id="score1">0</span></div>
+                <div class="scoreText" style="bottom: 70px;left: 10px;"><span id="name2">Player2</span> &mdash; <span id="score2">0</span></div>
+                <span id="turn1" style="position:absolute;top: 50px;right: 10px;"></span>
+                <span id="turn2" style="position:absolute;bottom: 50px;left: 10px;"></span>
+                
+                <img src="/static/gameover.jpg" id="gameover_img" style="top: 0px; left: 30%;">
+                
+                <div class="dice" id="dice1_class">
+                    <img src="/static/1.png" id="dice0_1" style="top: 150px;right: 10px;">
+                    <img src="/static/2.png" id="dice0_2" style="top: 150px;right: 10px;">
+                    <img src="/static/3.png" id="dice0_3" style="top: 150px;right: 10px;">
+                    <img src="/static/4.png" id="dice0_4" style="top: 150px;right: 10px;">
+                    <img src="/static/5.png" id="dice0_5" style="top: 150px;right: 10px;">
+                    <img src="/static/6.png" id="dice0_6" style="top: 150px;right: 10px;">
+                </div>
+
+                <div class="dice" id="dice2_class">
+                    <img src="/static/1.png" id="dice1_1" style="bottom: 150px;left: 10px;">
+                    <img src="/static/2.png" id="dice1_2" style="bottom: 150px;left: 10px;">
+                    <img src="/static/3.png" id="dice1_3" style="bottom: 150px;left: 10px;">
+                    <img src="/static/4.png" id="dice1_4" style="bottom: 150px;left: 10px;">
+                    <img src="/static/5.png" id="dice1_5" style="bottom: 150px;left: 10px;">
+                    <img src="/static/6.png" id="dice1_6" style="bottom: 150px;left: 10px;">
+                </div>
+
+                <div class="btn-toolbar" id="btn_toolbar1">
+                    <div class="btn-group">
+                        <button type="submit" id="btn_00"><span id="btn_00_span">0</span></button>
+                        <button type="submit" id="btn_01"><span id="btn_01_span">0</span></button>
+                        <button type="submit" id="btn_02"><span id="btn_02_span">0</span></button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit" id="btn_10"><span id="btn_10_span">0</span></button>
+                        <button type="submit" id="btn_11"><span id="btn_11_span">0</span></button>
+                        <button type="submit" id="btn_12"><span id="btn_12_span">0</span></button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit" id="btn_20"><span id="btn_20_span">0</span></button>
+                        <button type="submit" id="btn_21"><span id="btn_21_span">0</span></button>
+                        <button type="submit" id="btn_22"><span id="btn_22_span">0</span></button>
+                    </div>
+                </div>
+
+                <div class="btn-toolbar" id="btn_toolbar2">
+                    <div class="btn-group">
+                        <button type="submit" id="btn_30"><span id="btn_30_span">0</span></button>
+                        <button type="submit" id="btn_31"><span id="btn_31_span">0</span></button>
+                        <button type="submit" id="btn_32"><span id="btn_32_span">0</span></button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit" id="btn_40"><span id="btn_40_span">0</span></button>
+                        <button type="submit" id="btn_41"><span id="btn_41_span">0</span></button>
+                        <button type="submit" id="btn_42"><span id="btn_42_span">0</span></button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit" id="btn_50"><span id="btn_50_span">0</span></button>
+                        <button type="submit" id="btn_51"><span id="btn_51_span">0</span></button>
+                        <button type="submit" id="btn_52"><span id="btn_52_span">0</span></button>
+                    </div>
+                </div>
+                <button type="submit" id="reset" style="display:none;position: absolute; bottom: 70px;right: 660px;"><span id="reset_span">RESET</span></button>
+            </div>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='play.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %} Diced!! - A trivia game {% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <div>
+        <header> <h1>Diced!!</h1> </header>
+        <main >
+            <form id="start">
+                <input id="room" type="text" placeholder="Game Name" />
+            </form>
+            <br><br><br>
+        </main>
+        <li class="paragraph">
+            <b>HOW TO PLAY:</b>
+            <br>
+            <span class="li">&mdash; Place your die anywhere in your 3x3 grid by clicking on it</span>
+            <span class="li">&mdash; Your score is calculated by adding all your dice</span>
+            <span class="li">&mdash; Multiply your dice value by the number of times it is repeated in the <u>same column</u></span>
+            <span class="li">&mdash; Destroy your opponent's dice by matching the dice in the <u>same column</u></span>
+        </li>
+        <br><br>
+        <li class="paragraph">
+            <b>&nbsp;LOBBY:</b>
+            <br>
+            <span class="li">&mdash; Create a new game/join and existing game by giving game name and press Enter</span>
+            <span class="li">&mdash; If you disconnect, the game is over</span>
+            <span class="li">&nbsp; &nbsp; &nbsp; !! Room name should be greater than 3 letters !!</span>
+        </li>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+{% endblock %}

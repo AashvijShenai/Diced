@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+body {
+    font-family: "San Francisco", system-ui, -apple-system, "Helvetica Neue", Helvetica, sans-serif;
+    background: #b84054;
+    color: #fefefe;
+    /*text-align: center;*/
+    padding-bottom: 2rem;
+}
+
+main {
+    max-width: 96%;
+    width: 30rem;
+    margin: auto;
+    padding: 0 0 3rem 0;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+h1 {
+    font-family: 'Lobster', cursive;
+    font-weight: normal;
+    font-size: 3rem;
+    margin-top: 0;
+    text-align: left;
+}
+
+header h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: left;
+    margin-top: 0;
+}
+
+.li {
+    width: 40rem;
+    margin: 1%;
+    display: block;
+    text-align: left;
+    font-size: medium;
+}
+
+input {
+    display: block;
+    padding: .5rem 1rem;
+    width: 100%;
+    border: 0;
+    border-radius: 50px;
+    font-size: inherit;
+    text-align: center;
+    outline: 0;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4), 0 3px 18px -5px rgba(0,0,0,.2);
+}
+
+input:focus {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6), 0 3px 18px -5px rgba(0,0,0,.2);
+}
+
+button {
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em 1.5em;
+    font: inherit;
+    color: #42393d;
+    font-size: .8333rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+
+#panel {
+    display: none;
+}
+
+.panel {
+    width: 85%;
+    margin: auto;
+}
+
+.scoreText {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.25rem;
+    color: rgba(255,255,255,.5);
+    text-align: left;
+    font-weight: 500;
+    position: absolute;
+}
+
+span {
+    font-size: x-large;
+}
+
+img {
+    position: absolute;
+    border-radius: 15px;
+    display: none;
+}
+
+.btn-toolbar {
+    padding-top: 5em;
+    display: block;
+    margin-left: 5rem;
+}
+
+.btn-group button {
+    background-color: #f8f8f8;
+    float: left;
+    margin-right:1rem;
+    padding: 20px;
+    width: 25%;
+}
+
+  
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+  
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
