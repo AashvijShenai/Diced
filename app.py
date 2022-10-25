@@ -64,10 +64,10 @@ def updateScore(room, turn, btn):
 
     #Drop same numbers
     for i in range(3):
-        ttemp = 3*(1-turn) + i
-        if(val == grid[ttemp][col]):
-            grid[ttemp][col] = 0
-            emit(f'btn_{ttemp}{col}_val', {'value': 0}, room=room)
+        row_t = 3*(1-turn) + i
+        if(val == grid[row_t][col]):
+            grid[row_t][col] = 0
+            emit('btn_val', {'btn': f"btn_{row_t}{col}",'value': 0}, room=room)
 
     #Calculate scores
     for i in range(2):
@@ -86,9 +86,6 @@ def updateScore(room, turn, btn):
     grids[room] = grid
 
 
-
-
-
 ###########################################################
 #URLs
 @app.route('/')
@@ -100,14 +97,6 @@ def play(room):
     return render_template('play.html')
 
 #Socket events
-@socketio.on('connect')
-def on_connect():
-    pass
-
-@socketio.on('disconnect')
-def on_disconnect():
-    pass
-
 @socketio.on('create')
 def on_create(data):
     room = data['room']
