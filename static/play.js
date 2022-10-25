@@ -24,26 +24,6 @@ var $gameover = $('#gameover_img')
 var $dice0_1 = $('#dice0_1')
 var $dice1_1 = $('#dice1_1')
 
-var $btn_00 = $('#btn_00')
-var $btn_01 = $('#btn_01')
-var $btn_02 = $('#btn_02')
-var $btn_10 = $('#btn_10')
-var $btn_11 = $('#btn_11')
-var $btn_12 = $('#btn_12')
-var $btn_20 = $('#btn_20')
-var $btn_21 = $('#btn_21')
-var $btn_22 = $('#btn_22')
-
-var $btn_30 = $('#btn_30')
-var $btn_31 = $('#btn_31')
-var $btn_32 = $('#btn_32')
-var $btn_40 = $('#btn_40')
-var $btn_41 = $('#btn_41')
-var $btn_42 = $('#btn_42')
-var $btn_50 = $('#btn_50')
-var $btn_51 = $('#btn_51')
-var $btn_52 = $('#btn_52')
-
 var $reset_btn = $('#reset')
 
 var data = {
@@ -156,113 +136,14 @@ $reset_btn.on('click', function(event) {
     socket.emit('reset', data)
 })
 
-$btn_00.on('click', function(event) {
+var allButtons = document.querySelectorAll('button[type="submit"]');
+for (var i = 0; i < allButtons.length; i++) {
+  allButtons[i].addEventListener('click', function(event) {
     event.preventDefault()
-    data.btn = "btn_00"
+    data.btn = this.id
     socket.emit('click', data)
-})
-
-$btn_01.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_01"
-    socket.emit('click', data)
-})
-
-$btn_02.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_02"
-    socket.emit('click', data)
-})
-
-$btn_10.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_10"
-    socket.emit('click', data)
-})
-
-$btn_11.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_11"
-    socket.emit('click', data)
-})
-
-$btn_12.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_12"
-    socket.emit('click', data)
-})
-
-$btn_20.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_20"
-    socket.emit('click', data)
-})
-
-$btn_21.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_21"
-    socket.emit('click', data)
-})
-
-$btn_22.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_22"
-    socket.emit('click', data)
-})
-
-$btn_30.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_30"
-    socket.emit('click', data)
-})
-
-$btn_31.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_31"
-    socket.emit('click', data)
-})
-
-$btn_32.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_32"
-    socket.emit('click', data)
-})
-
-$btn_40.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_40"
-    socket.emit('click', data)
-})
-
-$btn_41.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_41"
-    socket.emit('click', data)
-})
-
-$btn_42.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_42"
-    socket.emit('click', data)
-})
-
-$btn_50.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_50"
-    socket.emit('click', data)
-})
-
-$btn_51.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_51"
-    socket.emit('click', data)
-})
-
-$btn_52.on('click', function(event) {
-    event.preventDefault()
-    data.btn = "btn_52"
-    socket.emit('click', data)
-})
+  });
+}
 
 window.onpagehide = function () {
     socket.emit('client_disconnecting', {'name': data.name, 'room': data.room});

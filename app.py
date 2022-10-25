@@ -125,11 +125,12 @@ def on_clientDisconnect(data):
     print(f"{name} has left {room}")
     leave_room(room)
     
-    del rooms[room]
-    del grids[room]
-    del turns[room]
-    del scores[room]
-    del names[room]
+    if rooms[room]:
+        del rooms[room]
+        del grids[room]
+        del turns[room]
+        del scores[room]
+        del names[room]
 
     emit('gameover',room=room)
 
@@ -169,7 +170,7 @@ def on_click(data):
     grid = grids[room]
 
     #Proceeding only if correct player clicks
-    if(request.sid == rooms[room][turns[room]]):
+    if(request.sid == rooms[room][turns[room]] and data['btn'] != 'reset'):
         emit('hide_beginturn', room=room)
 
         row = int(data['btn'][4])
@@ -189,7 +190,6 @@ def on_click(data):
         else:
             turns[room] = 1 - turns[room]
             roll(room)
-
 
 @socketio.on('reset')
 def on_reset(data):
