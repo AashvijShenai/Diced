@@ -22,18 +22,7 @@ var $turn2 = $('#turn2')
 var $gameover = $('#gameover_img')
 
 var $dice0_1 = $('#dice0_1')
-var $dice0_2 = $('#dice0_2')
-var $dice0_3 = $('#dice0_3')
-var $dice0_4 = $('#dice0_4')
-var $dice0_5 = $('#dice0_5')
-var $dice0_6 = $('#dice0_6')
-
 var $dice1_1 = $('#dice1_1')
-var $dice1_2 = $('#dice1_2')
-var $dice1_3 = $('#dice1_3')
-var $dice1_4 = $('#dice1_4')
-var $dice1_5 = $('#dice1_5')
-var $dice1_6 = $('#dice1_6')
 
 var $btn_00 = $('#btn_00')
 var $btn_01 = $('#btn_01')
@@ -54,26 +43,6 @@ var $btn_42 = $('#btn_42')
 var $btn_50 = $('#btn_50')
 var $btn_51 = $('#btn_51')
 var $btn_52 = $('#btn_52')
-
-var $btn_00_span = $('#btn_00_span')
-var $btn_01_span = $('#btn_01_span')
-var $btn_02_span = $('#btn_02_span')
-var $btn_10_span = $('#btn_10_span')
-var $btn_11_span = $('#btn_11_span')
-var $btn_12_span = $('#btn_12_span')
-var $btn_20_span = $('#btn_20_span')
-var $btn_21_span = $('#btn_21_span')
-var $btn_22_span = $('#btn_22_span')
-
-var $btn_30_span = $('#btn_30_span')
-var $btn_31_span = $('#btn_31_span')
-var $btn_32_span = $('#btn_32_span')
-var $btn_40_span = $('#btn_40_span')
-var $btn_41_span = $('#btn_41_span')
-var $btn_42_span = $('#btn_42_span')
-var $btn_50_span = $('#btn_50_span')
-var $btn_51_span = $('#btn_51_span')
-var $btn_52_span = $('#btn_52_span')
 
 var $reset_btn = $('#reset')
 
@@ -136,27 +105,13 @@ socket.on('reset', function(){
     $gameover.hide()
     $reset_btn.hide()
 
-    $btn_00_span.html(`${0}`)
-    $btn_01_span.html(`${0}`)
-    $btn_02_span.html(`${0}`)
-    $btn_10_span.html(`${0}`)
-    $btn_11_span.html(`${0}`)
-    $btn_12_span.html(`${0}`)
-    $btn_20_span.html(`${0}`)
-    $btn_21_span.html(`${0}`)
-    $btn_22_span.html(`${0}`)
-
-    $btn_30_span.html(`${0}`)
-    $btn_31_span.html(`${0}`)
-    $btn_32_span.html(`${0}`)
-    $btn_40_span.html(`${0}`)
-    $btn_41_span.html(`${0}`)
-    $btn_42_span.html(`${0}`)
-    $btn_50_span.html(`${0}`)
-    $btn_51_span.html(`${0}`)
-    $btn_52_span.html(`${0}`)
-    
-
+    for(let i = 0; i < 6; i++){
+        for(let j = 0; j < 3; j++){
+            document.getElementById(`btn_${i}${j}`).style.setProperty(
+                "background-image",
+                "url('/static/0.png')")
+        }
+    }
 })
 
 socket.on('hide_beginturn', function(){
@@ -176,163 +131,25 @@ socket.on('dice2_roll', function(){
     $dice1_1.show()
 })
 
-socket.on('dice_1_show', function(value){
-    data.val = value.val
-    $dice0_1.show()
-    $dice1_1.show()
+socket.on('dice_show', function(event){
+    data.val = event.dice_val
+    document.getElementById(`dice0_${data.val}`).style.setProperty("display", "block")
+    document.getElementById(`dice1_${data.val}`).style.setProperty("display", "block")
 })
 
-socket.on('dice_2_show', function(value){
-    data.val = value.val
-    $dice0_2.show()
-    $dice1_2.show()
+socket.on('dice_hide', function(event){
+    var dice_val = event.dice_val
+    document.getElementById(`dice0_${dice_val}`).style.setProperty("display", "none")
+    document.getElementById(`dice1_${dice_val}`).style.setProperty("display", "none")
 })
 
-socket.on('dice_3_show', function(value){
-    data.val = value.val
-    $dice0_3.show()
-    $dice1_3.show()
+socket.on('btn_val', function(event){
+    var btn = event.btn
+    var btn_url = `/static/${event.value}.png`
+    document.getElementById(btn).style.setProperty(
+        "background-image",
+        `url(${btn_url})`)
 })
-
-socket.on('dice_4_show', function(value){
-    data.val = value.val
-    $dice0_4.show()
-    $dice1_4.show()
-})
-
-socket.on('dice_5_show', function(value){
-    data.val = value.val
-    $dice0_5.show()
-    $dice1_5.show()
-})
-
-socket.on('dice_6_show', function(value){
-    data.val = value.val
-    $dice0_6.show()
-    $dice1_6.show()
-})
-
-socket.on('dice_1_hide', function(){
-    $dice0_1.hide()
-    $dice1_1.hide()
-})
-
-socket.on('dice_2_hide', function(){
-    $dice0_2.hide()
-    $dice1_2.hide()
-})
-
-socket.on('dice_3_hide', function(){
-    $dice0_3.hide()
-    $dice1_3.hide()
-})
-
-socket.on('dice_4_hide', function(){
-    $dice0_4.hide()
-    $dice1_4.hide()
-})
-
-socket.on('dice_5_hide', function(){
-    $dice0_5.hide()
-    $dice1_5.hide()
-})
-
-socket.on('dice_6_hide', function(){
-    $dice0_6.hide()
-    $dice1_6.hide()
-})
-
-socket.on('btn_00_val', function(value){
-    var valu = value.value
-    $btn_00_span.html(`${valu}`)
-    document.getElementById("btn_00_span").style.setProperty("background", "url(static/1.png)")
-})
-
-socket.on('btn_01_val', function(value){
-    var valu = value.value
-    $btn_01_span.html(`${valu}`)
-})
-
-socket.on('btn_02_val', function(value){
-    var valu = value.value
-    $btn_02_span.html(`${valu}`)
-})
-
-socket.on('btn_10_val', function(value){
-    var valu = value.value
-    $btn_10_span.html(`${valu}`)
-})
-
-socket.on('btn_11_val', function(value){
-    var valu = value.value
-    $btn_11_span.html(`${valu}`)
-})
-
-socket.on('btn_12_val', function(value){
-    var valu = value.value
-    $btn_12_span.html(`${valu}`)
-})
-
-socket.on('btn_20_val', function(value){
-    var valu = value.value
-    $btn_20_span.html(`${valu}`)
-})
-
-socket.on('btn_21_val', function(value){
-    var valu = value.value
-    $btn_21_span.html(`${valu}`)
-})
-
-socket.on('btn_22_val', function(value){
-    var valu = value.value
-    $btn_22_span.html(`${valu}`)
-})
-
-socket.on('btn_30_val', function(value){
-    var valu = value.value
-    $btn_30_span.html(`${valu}`)
-})
-
-socket.on('btn_31_val', function(value){
-    var valu = value.value
-    $btn_31_span.html(`${valu}`)
-})
-
-socket.on('btn_32_val', function(value){
-    var valu = value.value
-    $btn_32_span.html(`${valu}`)
-})
-
-socket.on('btn_40_val', function(value){
-    var valu = value.value
-    $btn_40_span.html(`${valu}`)
-})
-
-socket.on('btn_41_val', function(value){
-    var valu = value.value
-    $btn_41_span.html(`${valu}`)
-})
-
-socket.on('btn_42_val', function(value){
-    var valu = value.value
-    $btn_42_span.html(`${valu}`)
-})
-
-socket.on('btn_50_val', function(value){
-    var valu = value.value
-    $btn_50_span.html(`${valu}`)
-})
-
-socket.on('btn_51_val', function(value){
-    var valu = value.value
-    $btn_51_span.html(`${valu}`)
-})
-
-socket.on('btn_52_val', function(value){
-    var valu = value.value
-    $btn_52_span.html(`${valu}`)
-})
-
 
 $reset_btn.on('click', function(event) {
     event.preventDefault()

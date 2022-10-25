@@ -49,11 +49,11 @@ def roll(room):
     #TODO
     index = random.randint(10,15)
     for i in range(1,index):
-        emit('dice_' + str((i%6) + 1) + '_show', {'val': val}, room=room)
+        emit('dice_show', {'dice_val': (i%6) + 1}, room=room)
         time.sleep(0.01)
-        emit('dice_' + str((i%6) + 1) + '_hide', room=room)
+        emit('dice_hide', {'dice_val': (i%6) + 1},room=room)
     
-    emit('dice_' + str(val) + '_show', {'val': val}, room=room)
+    emit('dice_show', {'dice_val': val}, room=room)
 
 def updateScore(room, turn, btn):
     grid = grids[room]
@@ -175,17 +175,12 @@ def on_click(data):
         row = int(data['btn'][4])
         col = int(data['btn'][5])
         
-        if(turns[room] == 0):
-            if(row < 3 and grid[row][col] == 0):
+        if((not turns[room] and row < 3 and not grid[row][col])
+            or (turns[room] and row > 2 and not grid[row][col])):
                 grid[row][col] = dice_val
                 valid = 1
-                emit(f'btn_{row}{col}_val', {'value': dice_val}, room=room)
-        else:
-            if(row > 2 and grid[row][col] == 0):
-                grid[row][col] = dice_val
-                valid = 1
-                emit(f'btn_{row}{col}_val', {'value': dice_val}, room=room)        
-    
+                emit(f'btn_val', {'btn': f"btn_{row}{col}", 'value': dice_val}, room=room)
+
     if(valid):
         updateScore(room, turns[room], data['btn'])
 

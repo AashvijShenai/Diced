@@ -47,11 +47,6 @@ header h1 {
     text-align: center;
 }
 
-h2 {
-    text-align: left;
-    margin-top: 0;
-}
-
 .li {
     width: 40rem;
     margin: 1%;
@@ -77,16 +72,14 @@ input:focus {
 }
 
 button {
-    border-radius: 3px;
+    border-radius: 12px;
     border: none;
-    cursor: pointer;
     padding: 0.5em 1.5em;
-    font: inherit;
-    color: #42393d;
     font-size: .8333rem;
     font-weight: 500;
     display: block;
     margin-bottom: 1rem;
+    color: #f8f8f8;
 }
 
 
@@ -121,8 +114,8 @@ img {
 
 .btn-toolbar {
     padding-top: 5em;
-    display: block;
-    margin-left: 5rem;
+    display: none;
+    margin-left: 7rem;
 }
 
 .btn-group button {
@@ -130,10 +123,10 @@ img {
     float: left;
     margin-right:1rem;
     padding: 20px;
-    width: 25%;
+    width: 79px;
+    height: 78px;
 }
 
-  
 .btn-group button:not(:last-child) {
     border-right: none; /* Prevent double borders */
 }
